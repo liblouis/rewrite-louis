@@ -1,0 +1,167 @@
+table  ::= ((comment | rule_with_comment | empty_line) <newline>)*;
+
+comment     	     ::= sp_maybe <"#"> not_newline;
+end_comment 	     ::= sp not_newline;
+<not_newline> 	     ::= #'[^\n]*';
+<empty_line>   	     ::= sp_maybe;
+<rule_with_comment>  ::= sp_maybe rule (end_comment | sp_maybe);
+
+<rule> ::= (* Miscellaneous Opcodes *)
+       	   include | undefined | display | multind |
+	   (* Character-Definition Opcodes *)
+       	   space | punctuation | digit | uplow | grouping | letter | lowercase | uppercase | litdigit | sign | math |
+	   (* Braille Indicator Opcodes *)
+	   capsletter | begcapsword | endcapsword | capsmodechars | begcaps | endcaps | begcapsphrase | endcapsphrase |
+	   lencapsphrase | letsign | noletsign | noletsignbefore | noletsignafter | nocontractsign | numsign | numericnocontchars |
+	   numericmodechars | midendnumericmodechars |
+	   
+	   seqdelimiter | seqbeforechars | seqafterchars | seqafterpattern |
+	   (* Emphasis Opcodes *)
+    	   emphclass | noemphchars | emphletter | begemphword | endemphword | emphmodechars | begemphphrase | endemphphrase |
+	   lenemphphrase | begemph | endemph |
+	   (* Special Symbol Opcodes *)
+    	   decpoint | hyphen |
+    	   (* Special Processing Opcodes *)
+	   capsnocont |
+	   (* Translation Opcodes *)
+    	   compbrl | comp6 | nocont | replace | always | repeated | repword | rependword | largesign | word | syllable | joinword |
+	   lowword | contraction | sufword | prfword | begword | begmidword | midword | midendword | endword | partword |
+	   prepunc | postpunc | begnum | midnum | endnum | joinnum |
+    	   (* Character-Class Opcodes *)
+	   attribute |
+    	   (* Swap Opcodes *)
+	   swapcd | swapdd | swapcc |
+    	   (* Context and Multipass Opcodes *)
+    	   context | pass2 | pass3 | pass4 |
+	   (* correct Opcode *)
+	   correct |
+	   (* match Opcode *)
+    	   match;
+
+include   ::= <"include"> sp file_name;
+undefined ::= <"undefined"> sp dots;
+display   ::= <"display"> sp chars sp dots;
+multind   ::= <"multind"> sp dots sp chars;
+
+space       ::= prefix? <"space"> sp chars sp dots_with_zero;
+punctuation ::= prefix? <"punctuation"> sp chars sp dots;
+digit       ::= <"digit"> sp chars sp dots;
+uplow       ::= prefix? <"uplow"> sp chars sp dots (<","> dots)?;
+grouping    ::= <"grouping"> sp chars sp chars sp dots <","> dots;
+letter 	    ::= prefix? <"letter"> sp chars sp dots;
+lowercase   ::= prefix? <"lowercase"> sp char sp dots;
+uppercase   ::= prefix? <"uppercase"> sp char sp dots;
+litdigit    ::= <"litdigit"> sp char sp dots;
+sign 	    ::= prefix? <"sign"> sp char sp dots;
+math 	    ::= prefix? <"math"> sp char sp dots;
+
+capsletter  ::= <"capsletter"> dots;
+begcapsword ::= prefix? <"begcapsword"> sp dots;
+endcapsword ::= prefix? <"endcapsword"> sp dots;
+capsmodechars ::= <"capsmodechars"> sp chars;
+begcaps       ::= <"begcaps"> sp dots;
+endcaps       ::= <"endcaps"> sp dots;
+begcapsphrase ::= <"begcapsphrase"> sp dots;
+endcapsphrase ::= <"endcapsphrase"> sp ("before" | "after") sp dots;
+lencapsphrase ::= <"lencapsphrase"> sp ascii_digit;
+letsign       ::= <"letsign"> sp dots;
+noletsign     ::= <"noletsign"> sp chars;
+noletsignbefore ::= <"noletsignbefore"> sp chars;
+noletsignafter 	::= <"noletsignafter"> sp chars;
+nocontractsign 	::= <"nocontractsign"> sp dots;
+numsign       	::= <"numsign"> sp dots;
+numericnocontchars ::= <"numericnocontchars"> sp chars;
+numericmodechars   ::=  <"numericmodechars"> sp chars;
+midendnumericmodechars ::= <"midendnumericmodechars"> sp chars;
+
+seqdelimiter 	   ::= <"seqdelimiter"> sp chars;
+seqbeforechars 	   ::= <"seqbeforechars"> sp chars;
+seqafterchars 	   ::= <"seqafterchars"> sp chars;
+seqafterpattern    ::= <"seqafterpattern"> sp chars;
+
+emphclass     ::= <"emphclass"> sp ascii_chars;
+begemph       ::= <"begemph"> sp ascii_chars sp dots;
+endemph       ::= prefix? <"endemph"> sp ascii_chars sp dots;
+noemphchars   ::= <"noemphchars"> sp ascii_chars sp chars;
+emphletter    ::= <"emphletter"> sp ascii_chars sp dots;
+begemphword   ::= <"begemphword"> sp ascii_chars sp dots;
+endemphword   ::= <"endemphword"> sp ascii_chars sp dots;
+emphmodechars ::= <"emphmodechars"> sp ascii_chars sp chars;
+begemphphrase ::= <"begemphphrase"> sp ascii_chars sp dots;
+endemphphrase ::= <"endemphphrase"> sp ascii_chars sp ("before" | "after") sp dots;
+lenemphphrase ::= <"lenemphphrase"> sp ascii_chars sp ascii_digit;
+
+decpoint      ::= <"decpoint"> sp chars sp dots;
+hyphen 	      ::= <"hyphen"> sp chars sp dots;
+
+capsnocont    ::=  <"capsnocont">;
+
+compbrl       ::= <"compbrl"> sp chars;
+comp6 	      ::= <"comp6"> sp chars sp dots;
+nocont 	      ::= <"nocont"> sp chars;
+replace       ::= <"replace"> sp chars sp chars?;
+always 	      ::= prefix? <"always"> sp chars sp dots;
+repeated      ::= prefix? <"repeated"> sp chars sp dots;
+repword       ::= <"repword"> sp chars sp dots;
+rependword    ::= <"rependword"> sp chars sp dots "," dots;
+largesign     ::= <"largesign"> sp chars sp dots;
+word 	      ::= prefix? "word" sp chars sp dots;
+syllable      ::= <"syllable"> sp chars sp dots;
+joinword      ::= <"joinword"> sp chars sp dots;
+lowword       ::= <"lowword"> sp chars sp dots;
+contraction   ::= <"contraction"> sp chars;
+sufword       ::= prefix? <"sufword"> sp chars sp dots;
+prfword       ::= prefix? <"prfword"> sp chars sp dots;
+begword       ::= prefix? <"begword"> sp chars sp dots;
+begmidword    ::= prefix? <"begmidword"> sp chars sp dots;
+midword       ::= prefix? <"midword"> sp chars sp dots;
+midendword    ::= prefix? <"midendword"> sp chars sp dots;
+endword       ::= prefix? <"endword"> sp chars sp dots;
+partword      ::= <"partword"> sp chars sp dots;
+
+prepunc       ::= prefix? <"prepunc"> sp chars sp dots;
+postpunc      ::= prefix? <"postpunc"> sp chars sp dots;
+begnum 	      ::= <"begnum"> sp chars sp dots;
+midnum 	      ::= <"midnum"> sp chars sp dots;
+endnum 	      ::= <"endnum"> sp chars sp dots;
+joinnum       ::= <"joinnum"> sp chars sp dots;
+
+attribute     ::= <"attribute"> sp (ascii_chars | oct_digit ) sp chars;
+
+swapcd 	      ::= "swapcd" sp ascii_chars sp dots (<","> dots)*;
+swapdd 	      ::= "swapdd" sp ascii_chars sp nonzero_digits (<","> nonzero_digits)* sp dots (<","> dots)*;
+swapcc 	      ::= "swapcc" sp ascii_chars sp chars sp chars;
+
+(* Context and Multipass Opcodes *)
+context	   ::=  prefix? <"context"> sp multipass_test sp multipass_action;
+pass2 	   ::=  prefix? <"pass2"> sp multipass_test sp multipass_action;
+pass3 	   ::=  prefix? <"pass3"> sp multipass_test sp multipass_action;
+pass4 	   ::=  prefix? <"pass4"> sp multipass_test sp multipass_action;
+
+(* Correct Opcode *)
+correct ::= prefix? <"correct"> sp multipass_test sp multipass_action;
+
+multipass_test 	 ::=  chars;
+multipass_action ::=  chars;
+
+(* Match Opcode *)
+match        ::= prefix? <"match"> sp pre_pattern sp chars sp post_pattern sp dots;
+pre_pattern  ::=  chars;
+post_pattern ::=  chars;
+
+prefix ::= ("noback" | "nofor" | "nocross") sp;
+
+<sp>   	    ::= <(" " | "\t")+>;
+<sp_maybe>  ::= <(" " | "\t")*>;
+newline     ::= "\n";
+esc_seq     ::= "\\\\" | "\\f" | "\\n" | "\\r" | "\\s" | "\\t" | "\\v" | "\\e";
+chars 	    ::= esc_seq | #'[^ ]+' | #'[a-zA-Z]+';
+ascii_chars ::= #'[a-zA-Z]+';
+char 	    ::= esc_seq | #'[^ ]' | '[a-zA-Z]' | hex_char;
+hex_char    ::= "\\x" #'[0-9a-fA-F]{4}';
+<file_name> ::= #'[-a-zA-Z0-9._/]+'
+dots 	    ::= "=" | #'[-1-9a-f]+';
+dots_with_zero ::= "=" | #'[-0-9a-f]+';
+oct_digit   ::= #'[0-7]'
+ascii_digit ::= #'[0-9]'
+nonzero_digits ::= #'[1-9]+'
