@@ -22,6 +22,12 @@ which will return
    [:include "en-ueb-g1.ctb"]]
 #+end_src
 
+** Acknowledgements
+
+A lot of the [[https://github.com/liblouis/rewrite-louis/blob/main/resources/louis.bnf][EBNF grammar]] was basically re-used from [[https://github.com/liblouis/louis-parser][louis-parser]] and
+its liblouis table grammar definition in the form of [[https://en.wikipedia.org/wiki/Parsing_expression_grammar][Parsing
+expression grammar]].
+
 ** License
 Copyright © 2021 Swiss Library for the Blind, Visually Impaired and Print Disabled
 
