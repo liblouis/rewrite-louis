@@ -56,7 +56,7 @@ litdigit    ::= <"litdigit"> sp char sp dots;
 sign 	    ::= prefix? <"sign"> sp char sp dots;
 math 	    ::= prefix? <"math"> sp char sp dots;
 
-capsletter  ::= <"capsletter"> dots;
+capsletter  ::= <"capsletter"> sp dots;
 begcapsword ::= prefix? <"begcapsword"> sp dots;
 endcapsword ::= prefix? <"endcapsword"> sp dots;
 capsmodechars ::= <"capsmodechars"> sp chars;
