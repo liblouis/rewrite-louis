@@ -17,6 +17,7 @@ end_comment 	     ::= sp not_newline;
 	   
 	   seqdelimiter | seqbeforechars | seqafterchars | seqafterpattern |
 	   (* Emphasis Opcodes *)
+	   class | (* FIXME: doesnt seem to be documented *)
     	   emphclass | noemphchars | emphletter | begemphword | endemphword | emphmodechars | begemphphrase | endemphphrase |
 	   lenemphphrase | begemph | endemph |
 	   (* Special Symbol Opcodes *)
@@ -79,6 +80,7 @@ seqbeforechars 	   ::= <"seqbeforechars"> sp chars;
 seqafterchars 	   ::= <"seqafterchars"> sp chars;
 seqafterpattern    ::= <"seqafterpattern"> sp chars;
 
+class         ::= <"class"> sp ascii_chars sp chars;
 emphclass     ::= <"emphclass"> sp ascii_chars;
 begemph       ::= <"begemph"> sp ascii_chars sp dots;
 endemph       ::= prefix? <"endemph"> sp ascii_chars sp dots;
