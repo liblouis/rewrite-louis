@@ -45,7 +45,7 @@ display   ::= <"display"> sp chars sp dots;
 multind   ::= <"multind"> sp dots sp chars;
 
 space       ::= prefix? <"space"> sp chars sp dots_with_zero;
-punctuation ::= prefix? <"punctuation"> sp chars sp dots;
+punctuation ::= prefix? <"punctuation"> sp chars sp dots_with_zero;
 digit       ::= <"digit"> sp chars sp dots;
 uplow       ::= prefix? <"uplow"> sp chars sp dots (<","> dots)?;
 grouping    ::= <"grouping"> sp chars sp chars sp dots <","> dots;
@@ -53,8 +53,8 @@ letter 	    ::= prefix? <"letter"> sp chars sp dots;
 lowercase   ::= prefix? <"lowercase"> sp char sp dots;
 uppercase   ::= prefix? <"uppercase"> sp char sp dots;
 litdigit    ::= <"litdigit"> sp char sp dots;
-sign 	    ::= prefix? <"sign"> sp char sp dots;
-math 	    ::= prefix? <"math"> sp char sp dots;
+sign 	    ::= prefix? <"sign"> sp char sp dots_with_zero;
+math 	    ::= prefix? <"math"> sp char sp dots_with_zero;
 
 capsletter  ::= <"capsletter"> sp dots;
 begcapsword ::= prefix? <"begcapsword"> sp dots;
