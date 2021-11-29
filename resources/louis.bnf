@@ -160,8 +160,10 @@ ascii_chars ::= #'[a-zA-Z]+';
 char 	    ::= esc_seq | #'[^ ]' | '[a-zA-Z]' | hex_char;
 hex_char    ::= "\\x" #'[0-9a-fA-F]{4}';
 <file_name> ::= #'[-a-zA-Z0-9._/]+'
-dots 	    ::= "=" | #'[-1-9a-f]+';
-dots_with_zero ::= "=" | #'[-0-9a-f]+';
-oct_digit   ::= #'[0-7]'
-ascii_digit ::= #'[0-9]'
+dots 	    ::= "=" | dot ( <"-"> dot)*;
+dot         ::= #'[1-9a-f]+'
+dots_with_zero ::= "=" | dot_with_zero ( <"-"> dot_with_zero)*;
+dot_with_zero  ::= #'[0-9a-f]+';
+oct_digit      ::= #'[0-7]'
+ascii_digit    ::= #'[0-9]'
 nonzero_digits ::= #'[1-9]+'
