@@ -138,7 +138,7 @@ joinnum       ::= prefix? <"joinnum"> sp chars sp dots;
 attribute     ::= <"attribute"> sp (ascii_chars | oct_digit ) sp chars;
 
 swapcd 	      ::= "swapcd" sp ascii_chars sp chars sp dots (<","> dots)*;
-swapdd 	      ::= "swapdd" sp ascii_chars sp nonzero_digits (<","> nonzero_digits)* sp dots (<","> dots)*;
+swapdd 	      ::= "swapdd" sp ascii_chars sp dots (<","> dots)*;
 swapcc 	      ::= "swapcc" sp ascii_chars sp chars sp chars;
 
 (* Context and Multipass Opcodes *)
