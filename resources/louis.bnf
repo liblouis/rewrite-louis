@@ -15,7 +15,7 @@ end_comment 	     ::= sp not_newline;
 	   lencapsphrase | letsign | noletsign | noletsignbefore | noletsignafter | nocontractsign | numsign | numericnocontchars |
 	   numericmodechars | midendnumericmodechars |
 	   
-	   seqdelimiter | seqbeforechars | seqafterchars | seqafterpattern |
+	   seqdelimiter | seqbeforechars | seqafterchars | seqafterpattern | seqafterexpression |
 	   (* Emphasis Opcodes *)
 	   class | (* FIXME: doesnt seem to be documented *)
     	   emphclass | noemphchars | emphletter | begemphword | endemphword | emphmodechars | begemphphrase | endemphphrase |
@@ -79,6 +79,7 @@ seqdelimiter 	   ::= <"seqdelimiter"> sp chars;
 seqbeforechars 	   ::= <"seqbeforechars"> sp chars;
 seqafterchars 	   ::= <"seqafterchars"> sp chars;
 seqafterpattern    ::= <"seqafterpattern"> sp chars;
+seqafterexpression ::= <"seqafterexpression"> sp chars;
 
 class         ::= <"class"> sp ascii_chars sp chars;
 emphclass     ::= <"emphclass"> sp ascii_chars;
