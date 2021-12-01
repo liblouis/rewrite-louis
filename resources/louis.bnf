@@ -158,9 +158,9 @@ m_constraint ::= ("empmatchafter" | "empmatchbefore" | "empmatchafter" sp "empma
 pre_pattern  ::=  chars;
 post_pattern ::=  chars;
 
-prefix ::= ("noback" | "nofor" | "nocross") sp;
 literal      ::= <"literal"> sp chars;
 
+prefix       ::= ((("noback" | "nofor") (sp "nocross")?) | "nocross") sp;
 <sp>   	    ::= <(" " | "\t")+>;
 <sp_maybe>  ::= <(" " | "\t")*>;
 newline     ::= "\n" | "\r\n" | "\r"; (* see https://en.wikipedia.org/wiki/Newline *)
