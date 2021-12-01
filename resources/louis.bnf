@@ -163,7 +163,7 @@ literal      ::= <"literal"> sp chars;
 
 <sp>   	    ::= <(" " | "\t")+>;
 <sp_maybe>  ::= <(" " | "\t")*>;
-newline     ::= "\n";
+newline     ::= "\n" | "\r\n" | "\r"; (* see https://en.wikipedia.org/wiki/Newline *)
 esc_seq     ::= "\\\\" | "\\f" | "\\n" | "\\r" | "\\s" | "\\t" | "\\v" | "\\e";
 chars 	    ::= esc_seq | #'[^ \t]+' | #'[a-zA-Z]+';
 ascii_chars ::= #'[a-zA-Z][a-zA-Z0-9]*';
