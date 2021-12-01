@@ -28,7 +28,9 @@ end_comment 	     ::= sp not_newline;
     	   compbrl | comp6 | nocont | replace | always | repeated | repword | rependword | largesign | word | syllable | joinword |
 	   lowword | contraction | sufword | prfword | begword | begmidword | midword | midendword | endword | partword |
 	   prepunc | postpunc | begnum | midnum | endnum | joinnum |
-    	   (* Character-Class Opcodes *)
+	   (* Computer braille *)
+	   begcomp | endcomp |
+	   (* Character-Class Opcodes *)
 	   attribute |
     	   (* Swap Opcodes *)
 	   swapcd | swapdd | swapcc |
@@ -121,6 +123,8 @@ midword       ::= prefix? <"midword"> sp chars sp dots;
 midendword    ::= prefix? <"midendword"> sp chars sp dots;
 endword       ::= prefix? <"endword"> sp chars sp dots;
 partword      ::= <"partword"> sp chars sp dots;
+begcomp       ::= prefix? <"begcomp"> sp dots;
+endcomp	      ::= <"endcomp"> sp dots;
 
 prepunc       ::= prefix? <"prepunc"> sp chars sp dots;
 postpunc      ::= prefix? <"postpunc"> sp chars sp dots;
