@@ -43,23 +43,23 @@ end_comment 	     ::= sp not_newline;
 	   literal;
 
 include   ::= <"include"> sp file_name;
-undefined ::= <"undefined"> sp dots;
-display   ::= <"display"> sp chars sp dots;
-multind   ::= <"multind"> sp dots sp chars;
+undefined ::= <"undefined"> sp dots_with_zero;
+display   ::= <"display"> sp chars sp dots_with_zero;
+multind   ::= prefix? <"multind"> sp dots sp chars;
 
 space       ::= prefix? <"space"> sp chars sp dots_with_zero;
 punctuation ::= prefix? <"punctuation"> sp chars sp dots_with_zero;
 digit       ::= <"digit"> sp chars sp dots;
 uplow       ::= prefix? <"uplow"> sp chars sp dots (<","> dots)?;
 grouping    ::= <"grouping"> sp chars sp chars sp dots <","> dots;
-letter 	    ::= prefix? <"letter"> sp chars sp dots;
+letter 	    ::= prefix? <"letter"> sp chars sp dots_with_zero;
 lowercase   ::= prefix? <"lowercase"> sp char sp dots;
 uppercase   ::= prefix? <"uppercase"> sp char sp dots;
 litdigit    ::= <"litdigit"> sp char sp dots;
 sign 	    ::= prefix? <"sign"> sp char sp dots_with_zero;
 math 	    ::= prefix? <"math"> sp char sp dots_with_zero;
 
-capsletter  ::= <"capsletter"> sp dots;
+capsletter  ::= prefix? <"capsletter"> sp dots;
 begcapsword ::= prefix? <"begcapsword"> sp dots;
 endcapsword ::= prefix? <"endcapsword"> sp dots;
 capsmodechars ::= <"capsmodechars"> sp chars;
