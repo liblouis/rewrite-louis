@@ -28,6 +28,15 @@ which will return
   find ~/src/liblouis/tables -type f -print | grep -v -e '\.dic' -e 'Makefile' -e 'maketablelist.sh' -e 'README' | sort | xargs lein run
 #+end_src
 
+** Status
+
+As it stands the parser can parse probably around 95% of the tables in
+the liblouis distribution. At the moment it has no support for
+
+- continuation lines (da-dk-g16-lit.ctb, da-dk-g26-lit.ctb, da-dk-g26l-lit.ctb)
+- huge tables cause a OutOfMemoryError (GC overhead limit exceeded)
+  (zh-chn.ctb, zhcn-g1.ctb, zhcn-g2.ctb, ko-chars.cti, zh-tw.ctb, etc)
+
 ** Acknowledgements
 
 A lot of the [[https://github.com/liblouis/rewrite-louis/blob/main/resources/louis.bnf][EBNF grammar]] was basically re-used from [[https://github.com/liblouis/louis-parser][louis-parser]] and
