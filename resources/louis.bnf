@@ -93,8 +93,8 @@ emphletter    ::= <"emphletter"> sp ascii_chars sp dots;
 begemphword   ::= <"begemphword"> sp ascii_chars sp dots;
 endemphword   ::= <"endemphword"> sp ascii_chars sp dots;
 emphmodechars ::= <"emphmodechars"> sp ascii_chars sp chars;
-begemphphrase ::= <"begemphphrase"> sp ascii_chars sp dots;
-endemphphrase ::= <"endemphphrase"> sp ascii_chars sp ("before" | "after") sp dots;
+begemphphrase ::= <"begemphphrase"> sp ascii_chars sp dots_with_zero;
+endemphphrase ::= <"endemphphrase"> sp ascii_chars sp ("before" | "after") sp dots_with_zero;
 lenemphphrase ::= <"lenemphphrase"> sp ascii_chars sp ascii_digit;
 
 decpoint      ::= <"decpoint"> sp chars sp dots;
@@ -106,12 +106,12 @@ compbrl       ::= <"compbrl"> sp chars;
 comp6 	      ::= <"comp6"> sp chars sp dots;
 nocont 	      ::= <"nocont"> sp chars;
 replace       ::= <"replace"> sp chars sp chars?;
-always 	      ::= prefix? <"always"> sp chars sp dots;
-repeated      ::= prefix? <"repeated"> sp chars sp dots;
+always 	      ::= prefix? constraint? <"always"> sp chars sp dots_with_zero;
+repeated      ::= prefix? <"repeated"> sp chars sp dots_with_zero;
 repword       ::= <"repword"> sp chars sp dots;
 rependword    ::= <"rependword"> sp chars sp dots "," dots;
 largesign     ::= <"largesign"> sp chars sp dots;
-word 	      ::= prefix? "word" sp chars sp dots;
+word 	      ::= prefix? constraint? "word" sp chars sp dots_with_zero;
 syllable      ::= <"syllable"> sp chars sp dots;
 joinword      ::= <"joinword"> sp chars sp dots;
 lowword       ::= <"lowword"> sp chars sp dots;
@@ -129,10 +129,10 @@ endcomp	      ::= <"endcomp"> sp dots;
 
 prepunc       ::= prefix? <"prepunc"> sp chars sp dots;
 postpunc      ::= prefix? <"postpunc"> sp chars sp dots;
-begnum 	      ::= <"begnum"> sp chars sp dots;
-midnum 	      ::= <"midnum"> sp chars sp dots;
-endnum 	      ::= <"endnum"> sp chars sp dots;
 joinnum       ::= <"joinnum"> sp chars sp dots;
+begnum 	      ::= prefix? <"begnum"> sp chars sp dots_with_zero;
+midnum 	      ::= prefix? <"midnum"> sp chars sp dots_with_zero;
+endnum 	      ::= prefix? <"endnum"> sp chars sp dots_with_zero;
 
 attribute     ::= <"attribute"> sp (ascii_chars | oct_digit ) sp chars;
 
