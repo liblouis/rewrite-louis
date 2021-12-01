@@ -153,7 +153,8 @@ multipass_test 	 ::=  chars;
 multipass_action ::=  chars;
 
 (* Match Opcode *)
-match        ::= prefix? <"match"> sp pre_pattern sp chars sp post_pattern sp dots;
+match        ::= prefix? constraint? m_constraint? <"match"> sp pre_pattern sp chars sp post_pattern sp dots;
+m_constraint ::= ("empmatchafter" | "empmatchbefore" | "empmatchafter" sp "empmatchbefore" | "empmatchbefore" sp "empmatchafter") sp;
 pre_pattern  ::=  chars;
 post_pattern ::=  chars;
 
