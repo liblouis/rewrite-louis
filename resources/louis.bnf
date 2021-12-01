@@ -106,24 +106,25 @@ compbrl       ::= prefix? <"compbrl"> sp chars;
 comp6 	      ::= <"comp6"> sp chars sp dots;
 nocont 	      ::= <"nocont"> sp chars;
 replace       ::= <"replace"> sp chars sp chars?;
-always 	      ::= prefix? constraint? <"always"> sp chars sp dots_with_zero;
+always 	      ::= prefix? with_class? <"always"> sp chars sp dots_with_zero;
 repeated      ::= prefix? <"repeated"> sp chars sp dots_with_zero;
 repword       ::= <"repword"> sp chars sp dots;
 rependword    ::= <"rependword"> sp chars sp dots "," dots;
 largesign     ::= <"largesign"> sp chars sp dots;
-word 	      ::= prefix? constraint? "word" sp chars sp dots_with_zero;
+word 	      ::= prefix? with_class? "word" sp chars sp dots_with_zero;
 syllable      ::= <"syllable"> sp chars sp dots;
 joinword      ::= <"joinword"> sp chars sp dots;
 lowword       ::= prefix? <"lowword"> sp chars sp dots;
 contraction   ::= <"contraction"> sp chars;
-sufword       ::= prefix? <"sufword"> sp chars sp dots;
+sufword       ::= prefix? with_class? <"sufword"> sp chars sp dots;
 prfword       ::= prefix? <"prfword"> sp chars sp dots;
-begword       ::= prefix? <"begword"> sp chars sp dots;
-begmidword    ::= prefix? <"begmidword"> sp chars sp dots;
-midword       ::= prefix? <"midword"> sp chars sp dots;
-midendword    ::= prefix? <"midendword"> sp chars sp dots;
-endword       ::= prefix? <"endword"> sp chars sp dots;
-partword      ::= <"partword"> sp chars sp dots;
+begword       ::= prefix? with_class? <"begword"> sp chars sp dots_with_zero;
+begmidword    ::= prefix? with_class? <"begmidword"> sp chars sp dots;
+midword       ::= prefix? with_class? <"midword"> sp chars sp dots;
+midendword    ::= prefix? with_class? <"midendword"> sp chars sp dots;
+endword       ::= prefix? with_class? <"endword"> sp chars sp dots;
+partword      ::= prefix? with_class? <"partword"> sp chars sp dots;
+
 begcomp       ::= prefix? <"begcomp"> sp dots;
 endcomp	      ::= <"endcomp"> sp dots;
 
@@ -161,6 +162,8 @@ post_pattern ::=  chars;
 literal      ::= <"literal"> sp chars;
 
 prefix       ::= ((("noback" | "nofor") (sp "nocross")?) | "nocross") sp;
+with_class   ::= (("before" | "after") sp ascii_chars sp)+;
+
 <sp>   	    ::= <(" " | "\t")+>;
 <sp_maybe>  ::= <(" " | "\t")*>;
 newline     ::= "\n" | "\r\n" | "\r"; (* see https://en.wikipedia.org/wiki/Newline *)
