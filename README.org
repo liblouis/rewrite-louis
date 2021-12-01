@@ -22,6 +22,12 @@ which will return
    [:include "en-ueb-g1.ctb"]]
 #+end_src
 
+*** Command line
+
+#+begin_src shell
+  find ~/src/liblouis/tables -type f -print | grep -v -e '\.dic' -e 'Makefile' -e 'maketablelist.sh' -e 'README' | sort | xargs lein run
+#+end_src
+
 ** Acknowledgements
 
 A lot of the [[https://github.com/liblouis/rewrite-louis/blob/main/resources/louis.bnf][EBNF grammar]] was basically re-used from [[https://github.com/liblouis/louis-parser][louis-parser]] and
