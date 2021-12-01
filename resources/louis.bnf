@@ -120,9 +120,9 @@ sufword       ::= prefix? with_class? <"sufword"> sp chars sp dots;
 prfword       ::= prefix? <"prfword"> sp chars sp dots;
 begword       ::= prefix? with_class? <"begword"> sp chars sp dots_with_zero;
 begmidword    ::= prefix? with_class? <"begmidword"> sp chars sp dots;
-midword       ::= prefix? with_class? <"midword"> sp chars sp dots;
+midword       ::= prefix? with_class? <"midword"> sp chars sp dots_with_zero;
 midendword    ::= prefix? with_class? <"midendword"> sp chars sp dots;
-endword       ::= prefix? with_class? <"endword"> sp chars sp dots;
+endword       ::= prefix? with_class? <"endword"> sp chars sp dots_with_zero;
 partword      ::= prefix? with_class? <"partword"> sp chars sp dots;
 
 begcomp       ::= prefix? <"begcomp"> sp dots;
