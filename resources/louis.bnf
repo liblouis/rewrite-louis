@@ -44,7 +44,7 @@ end_comment 	     ::= sp not_newline;
 
 include   ::= <"include"> sp file_name;
 undefined ::= <"undefined"> sp dots_with_zero;
-display   ::= <"display"> sp chars sp dots_with_zero;
+display   ::= prefix? <"display"> sp chars sp dots_with_zero; (* FIXME: Why does display need a nofor prefix? *)
 multind   ::= prefix? <"multind"> sp dots sp chars;
 
 space       ::= prefix? <"space"> sp chars sp dots_with_zero;
@@ -98,7 +98,7 @@ endemphphrase ::= <"endemphphrase"> sp ascii_chars sp ("before" | "after") sp do
 lenemphphrase ::= <"lenemphphrase"> sp ascii_chars sp ascii_digit;
 
 decpoint      ::= <"decpoint"> sp chars sp dots;
-hyphen 	      ::= <"hyphen"> sp chars sp dots;
+hyphen 	      ::= prefix? <"hyphen"> sp chars sp dots; (* FIXME: Does hyphen really need a nofor prefix? *)
 
 capsnocont    ::=  <"capsnocont">;
 
