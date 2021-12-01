@@ -86,7 +86,7 @@ seqafterexpression ::= <"seqafterexpression"> sp chars;
 
 class         ::= <"class"> sp ascii_chars sp chars;
 emphclass     ::= <"emphclass"> sp ascii_chars;
-begemph       ::= <"begemph"> sp ascii_chars sp dots;
+begemph       ::= prefix? <"begemph"> sp ascii_chars sp dots;
 endemph       ::= prefix? <"endemph"> sp ascii_chars sp dots;
 noemphchars   ::= <"noemphchars"> sp ascii_chars sp chars;
 emphletter    ::= <"emphletter"> sp ascii_chars sp dots;
@@ -102,7 +102,7 @@ hyphen 	      ::= <"hyphen"> sp chars sp dots;
 
 capsnocont    ::=  <"capsnocont">;
 
-compbrl       ::= <"compbrl"> sp chars;
+compbrl       ::= prefix? <"compbrl"> sp chars;
 comp6 	      ::= <"comp6"> sp chars sp dots;
 nocont 	      ::= <"nocont"> sp chars;
 replace       ::= <"replace"> sp chars sp chars?;
@@ -114,7 +114,7 @@ largesign     ::= <"largesign"> sp chars sp dots;
 word 	      ::= prefix? constraint? "word" sp chars sp dots_with_zero;
 syllable      ::= <"syllable"> sp chars sp dots;
 joinword      ::= <"joinword"> sp chars sp dots;
-lowword       ::= <"lowword"> sp chars sp dots;
+lowword       ::= prefix? <"lowword"> sp chars sp dots;
 contraction   ::= <"contraction"> sp chars;
 sufword       ::= prefix? <"sufword"> sp chars sp dots;
 prfword       ::= prefix? <"prfword"> sp chars sp dots;
@@ -129,10 +129,10 @@ endcomp	      ::= <"endcomp"> sp dots;
 
 prepunc       ::= prefix? <"prepunc"> sp chars sp dots;
 postpunc      ::= prefix? <"postpunc"> sp chars sp dots;
-joinnum       ::= <"joinnum"> sp chars sp dots;
 begnum 	      ::= prefix? <"begnum"> sp chars sp dots_with_zero;
 midnum 	      ::= prefix? <"midnum"> sp chars sp dots_with_zero;
 endnum 	      ::= prefix? <"endnum"> sp chars sp dots_with_zero;
+joinnum       ::= prefix? <"joinnum"> sp chars sp dots;
 
 attribute     ::= <"attribute"> sp (ascii_chars | oct_digit ) sp chars;
 
