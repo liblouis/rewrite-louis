@@ -39,7 +39,8 @@ end_comment 	     ::= sp not_newline;
 	   (* correct Opcode *)
 	   correct |
 	   (* match Opcode *)
-    	   match;
+	   match |
+	   literal;
 
 include   ::= <"include"> sp file_name;
 undefined ::= <"undefined"> sp dots;
@@ -157,6 +158,7 @@ pre_pattern  ::=  chars;
 post_pattern ::=  chars;
 
 prefix ::= ("noback" | "nofor" | "nocross") sp;
+literal      ::= <"literal"> sp chars;
 
 <sp>   	    ::= <(" " | "\t")+>;
 <sp_maybe>  ::= <(" " | "\t")*>;
