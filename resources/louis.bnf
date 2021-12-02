@@ -168,9 +168,9 @@ with_class   ::= (("before" | "after") sp ascii_chars sp)+;
 <sp_maybe>  ::= <(" " | "\t")*>;
 newline     ::= "\n" | "\r\n" | "\r"; (* see https://en.wikipedia.org/wiki/Newline *)
 esc_seq     ::= "\\\\" | "\\f" | "\\n" | "\\r" | "\\s" | "\\t" | "\\v" | "\\e";
-chars 	    ::= esc_seq | #'[^ \t\n]+' | #'[a-zA-Z]+';
+chars 	    ::= esc_seq | #'[^ \t\n]+';
 ascii_chars ::= #'[a-zA-Z][a-zA-Z0-9]*';
-char 	    ::= esc_seq | #'[^ ]' | '[a-zA-Z]' | hex_char;
+char 	    ::= esc_seq | #'[^ \t\n]' | hex_char;
 hex_char    ::= "\\x" #'[0-9a-fA-F]{4}';
 <file_name> ::= #'[-a-zA-Z0-9._/]+'
 dots 	    ::= "=" | dot ( <"-"> dot)*;
